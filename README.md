@@ -25,3 +25,21 @@ image-optimizer/
 │ ├── requirements.txt
 │ └── Dockerfile (optional)
 ```
+## Install Python Dependencies
+```
+pip install -r requirements.txt
+```
+
+## Run the Application
+```
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Your API will be running at:
+http://localhost:8000/docs
+
+## Dependencies
+- FastAPI
+- Uvicorn
+- Pillow (PIL)
+- requests
