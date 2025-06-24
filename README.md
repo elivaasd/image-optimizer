@@ -19,7 +19,7 @@ It resizes and converts images to modern formats (like WebP), ideal for integrat
 
 ```
 image-optimizer/
-├── backend/
+├── src/
 │ ├── main.py # FastAPI app
 │ ├── image_utils.py # Image processing logic
 │ ├── requirements.txt
