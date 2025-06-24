@@ -1,0 +1,44 @@
+name: 🚀 Build & Push Docker Image to Docker Hub
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - docker-build
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src
+
+    steps:
+      - name: 🔄 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 📛 Set Docker Image Tag
+        id: tag
+        run: |
+          BRANCH="${GITHUB_REF##*/}"
+          SAFE_TAG=$(echo "$BRANCH" | tr '/' '-')
+          echo "TAG=${SAFE_TAG}" >> $GITHUB_OUTPUT
+
+      - name: 🏗️ Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/image-optimizer:${{ steps.tag.outputs.TAG }},${{ secrets.DOCKER_USERNAME }}/image-optimizer:latest
