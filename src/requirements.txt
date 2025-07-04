@@ -4,3 +4,5 @@ pillow
 requests
 boto3
 python-dotenv
+redis
+cachetools
