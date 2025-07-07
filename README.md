@@ -43,14 +43,6 @@ http://localhost:8000/docs
 - Uvicorn
 - Pillow (PIL)
 - requests
-
----
-
-## 👤 Code Owner & Creator
-
-**Repository Owner:** Ashutosh Mohanty  
-**Contact:** https://www.linkedin.com/in/ashutoshmohanty-devops/
-
 ---
 
 ## 📄 License
